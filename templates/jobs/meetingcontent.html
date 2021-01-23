@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}
+{{ meeting.meetingName}}
+{% endblock %}
+{% block body %}
+    <div class="page-header">
+        <h1>{{ meeting.meetingName}}</h1>
+    </div>
+    <div class="row">
+    <h4>会议名称:</h4>
+    <p class="paragraph">{{ meeting.meetingName }}</p>
+    <h4>会议开始日期:</h4>
+    <p class="paragraph">{{ meeting.startTime }}</p>
+    <h4>会议结束日期:</h4>
+    <p class="paragraph">{{ meeting.endTime }}</p>
+    <h4>会议地点:</h4>
+    <p class="paragraph">{{ meeting.place }}</p>
+    <h4>会议信息:</h4>
+    <p class="paragraph">{{ meeting.meetingInfo | linebreaksbr }}</p>
+    {% ifnotequal meeting.website '' %}
+    <h4>网址:</h4>
+    <p class="paragraph"><a href="{{ meeting.website}}">{{ meeting.website }}</a></p>
+    {% endifnotequal %}
+    </div><!--/row-->
+ <div class="col-md-6 col-md-offset-8">
+                   <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a></div>
+                   <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+               </div>
+{% endblock %}

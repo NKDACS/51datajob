@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}
+{{ job.jobName }}
+{% endblock %}
+{% block body %}
+    <div class="page-header">
+        <h1>{{ job.jobName }}</h1>
+    </div>
+    <div class="row">
+    <h4>公司名称:</h4>
+    <p class="paragraph">{{ job.companyName }}</p>
+    <h4>职位名称:</h4>
+    <p class="paragraph">{{ job.jobName }}</p>
+    <h4>职位介绍:</h4>
+    <p class="paragraph">{{ job.jobInfo | linebreaksbr }}</p>
+    <h4>职位要求:</h4>
+    {% for foo in jobNeedList %}
+    <p class="paragraph">{{ foo | linebreaksbr }}</p>
+    {% endfor %}
+    <h4>实习或全职:</h4>
+    <p class="paragraph">
+    {% ifequal job.isPractice True %}
+    实习&nbsp;&nbsp;&nbsp;
+    {% endifequal %}
+    {% ifequal job.isFullTime True %}
+    全职&nbsp;&nbsp;&nbsp;</p>
+    {% endifequal %}
+    <h4>截止日期:</h4>
+    <p class="paragraph">{{ job.deadline }}</p>
+    {% ifnotequal job.website '' %}
+    <h4>网址:</h4>
+    <p class="paragraph"><a href="{{ job.website }}">{{ job.website }}</a></p>
+    {% endifnotequal %}
+    <h4>联系人邮箱:</h4>
+    <p class="paragraph"><a href="mailto:{{ job.contactEmail }}">{{ job.contactEmail }}</a></p>
+     </div><!--/row-->
+ <div class="col-md-6 col-md-offset-8">
+                   <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a></div>
+                   <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+               </div>
+{% endblock %}

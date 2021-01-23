@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}
+提交会议信息
+{% endblock %}
+{% block body %}
+    <div class="page-header">
+        <h1>提交会议信息</h1>
+    </div>
+    <div class="row">
+        <p>请将会议信息填写在下面的表单中，并点击提交按钮，通过审核后将会显示在主页。如有问题请联系<a href="mailto:nk_datajobs@163.com">nk_datajobs@163.com</a>。<p>
+        <form action="{% url 'jobs:meetingpoststatus' %}" method="post">
+{% csrf_token %}
+    <div class="input-group">
+        <span class="input-group-addon">会议名称*</span>
+        <input type="text" class="form-control" name="meetingName" placeholder="会议名称" required="required">
+    </div>
+    <br/>
+    <div class="input-group">
+        <span class="input-group-addon">会议开始日期*</span>
+        <input type="date" class="form-control" name="startTime" required="required">
+    </div>
+    <br/>
+    <div class="input-group">
+        <span class="input-group-addon">会议结束日期*</span>
+        <input type="date" class="form-control" name="endTime" required="required">
+    </div>
+    <br/>
+    <div class="input-group">
+        <span class="input-group-addon">会议地点*</span>
+        <input type="text" class="form-control" name="place" placeholder="会议地点" required="required">
+    </div>
+    <br/>
+    <div class="input-group">
+        <span class="input-group-addon">会议信息*</span>
+        <textarea rows="6" class="form-control" name="meetingInfo" placeholder="会议信息(限2000字以内)" required="required"></textarea>
+    </div>
+    <br/>
+    <div class="input-group">
+        <span class="input-group-addon">会议网址</span>
+        <input type="url" class="form-control" name="website" placeholder="http://example.com">
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-xs-3 col-xs-offset-5">
+        <input type="submit" class="btn btn-default" value="提交">
+        </div>
+    </div>
+</form>
+
+    </div><!--/row-->
+{% endblock %}

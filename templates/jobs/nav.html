@@ -1,0 +1,43 @@
+{% ifnotequal pageNum 1 %}
+<div class="container">
+    <nav style="text-align:center;">
+        <ul class="pagination">
+             {% if jobs.has_previous %}
+                <li>
+                    <a href="?page={{ jobs.previous_page_number }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            {% else %}
+                <li class="disabled">
+                    <a>
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+
+            {% for foo in pageNums%}
+                {% ifequal foo page %}
+                    <li class="active"><a href="?page={{ foo }}">{{ foo }}</a></li>
+                {% else %}
+                    <li><a href="?page={{ foo }}">{{ foo }}</a></li>
+                {% endifequal %}
+            {% endfor %}
+
+            {% if jobs.has_next %}
+                <li>
+                    <a href="?page={{ jobs.next_page_number }}" aria-label="Previous">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            {% else %}
+                <li class="disabled">
+                    <a>
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+{% endifnotequal %}

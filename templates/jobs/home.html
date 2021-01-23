@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}
+{{ head }}
+{% endblock %}
+{% block body %}
+    <div class="page-header">
+        <h1>{{ head }}</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-10">
+        <a class="btn btn-primary btn-sm" href="{% url 'jobs:post' %}" role="button">发布新招聘 &raquo;</a>
+        </div>
+        <br><br>
+        {% for foo in jobs %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-md-8">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                    &nbsp;职位名称:&nbsp;&nbsp;<a href="{% url 'jobs:content' foo.id %}">{{ foo.jobName }}</a>
+                </div>
+                <div class="col-md-4">
+                    {% ifequal foo.isFullTime True %}
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-tag" aria-hidden="true"></span>&nbsp;类别:&nbsp;&nbsp;<a href="{% url 'jobs:fulltime' %}">全职</a>
+                    {% endifequal %}
+                    {% ifequal foo.isPractice True %}
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-tag" aria-hidden="true"></span>&nbsp;类别:&nbsp;&nbsp;<a href="{% url 'jobs:internship' %}">实习</a>
+                    {% endifequal %}
+                </div>
+            </div>
+        </div>
+    <div class="panel-body">
+        <p class="paragraph">{{ foo.jobInfo | slice:"300" }}…</p>
+        <p class="paragraph"><a class="btn btn-default btn-sm" href={% url 'jobs:content' foo.id %} role="button">查看详情 &raquo;</a></p>
+    </div>
+    <div class="panel-footer">
+        <div class="row">
+            <div class="col-md-8">
+                <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>
+                &nbsp;公司名称:&nbsp;&nbsp;<a href="{% url 'jobs:company' foo.id %}">{{ foo.companyName }}</a>
+            </div>
+            <div class="col-md-4">
+                <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                &nbsp;发布时间:&nbsp;&nbsp;&nbsp;{{ foo.pubTime }}
+            </div>
+        </div>
+    </div>
+    </div>
+    {% endfor %}
+      </div><!--/row-->
+    {% include './nav.html' %}
+{% endblock %}

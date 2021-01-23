@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}
+提交招聘信息
+{% endblock %}
+{% block body %}
+    <div class="page-header">
+        <h1>提交招聘信息</h1>
+    </div>
+    <div class="row">
+    <p>请将您的招聘信息填写在下面的表单中，并点击提交按钮，通过审核后将会显示在主页。如有问题请联系<a href="mailto:nk_datajobs@163.com">nk_datajobs@163.com</a>。<p>
+    <form action="{% url 'jobs:status' %}" method="post">
+{% csrf_token %}
+    <div class="input-group">
+        <span class="input-group-addon">公司名称*</span>
+        <input type="text" class="form-control" name="companyName" placeholder="公司名称" required="required">
+    </div>
+    <br/>
+    <div class="input-group">
+        <span class="input-group-addon">职位名称*</span>
+        <input type="text" class="form-control" name="jobName" placeholder="职位名称" required="required">
+    </div>
+    <br/>
+    <div class="input-group">
+        <span class="input-group-addon">职位介绍*</span>
+        <textarea rows="6" class="form-control" name="jobInfo" placeholder="职位介绍(限2000字以内)" required="required"></textarea>
+    </div>
+    <br/>
+    <div class="input-group">
+        <span class="input-group-addon">职位要求*</span>
+        <textarea rows="6" class="form-control" name="jobNeed" placeholder="职位要求(限2000字以内),多条可用英文分号隔开" required="required"></textarea>
+    </div>
+    <br/>
+    <div class="input-group">
+        <span class="input-group-addon">截止日期*</span>
+        <input type="date" class="form-control" name="deadline" required="required">
+    </div>
+    <br/>
+    <div class="input-group">
+        <span class="input-group-addon">网址</span>
+        <input type="url" class="form-control" name="website" placeholder="http://example.com">
+    </div>
+    <br/>
+    <div class="input-group">
+        <span class="input-group-addon">联系人邮箱*</span>
+        <input type="email" class="form-control" name="contactEmail" placeholder="someone@example.com" required="required">
+    </div>
+    <br/>
+    <div class="input-group">
+        <span class="input-group-addon">发布人邮箱*</span>
+        <input type="email" class="form-control" name="publisherEmail" placeholder="someone@example.com" required="required">
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-xs-3 col-xs-offset-1">
+        <label class="checkbox-inline">
+            <input type="checkbox" name="isFullTime">全职
+        </label>
+        </div>
+        <div class="col-xs-3">
+        <label class="checkbox-inline">
+            <input type="checkbox" name="isPractice">实习
+        </label>
+        </div>
+        <div class="col-xs-2 col-xs-offset-1">
+        <input type="submit" class="btn btn-default" value="提交">
+        </div>
+    </div>
+    </form>
+    </div><!--/row-->
+{% endblock %}

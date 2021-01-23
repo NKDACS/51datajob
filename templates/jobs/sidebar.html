@@ -1,0 +1,47 @@
+{% load staticfiles %}
+<div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+    <div class="thumbnail" style="text-align:center;">
+        <img src="{% static 'images/nkstat.jpg' %}" alt="nku-stat">
+             <div class="caption">
+                 <b>南开大学统计与数据科学学院提供技术支持</b>
+             </div>
+    </div> <!--thumbnail-->
+
+    {% if Announce %}
+    {% for foo in Announce %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">{{ foo.annTitle }}</h4>
+        </div>
+        <div class="panel-body">
+            {{ foo.annInfo }}
+            {% if foo.annLink %}
+            <br><br>
+            <a class="btn btn-primary btn-sm" href="{{ foo.annLink }}" target=_blank role="button">点击查看详情 &raquo;</a>
+            {% endif %}
+       </div>
+    </div><!-- panel --> 
+
+    {% endfor %} 
+    {% endif %}
+
+    {% if friendLinks %}
+    <div class="list-group">
+        <li class="list-group-item">
+        <h4><span class="glyphicon glyphicon-link" aria-hidden="true">友情链接</span></h4>
+        {% for foo in friendLinks %}
+        <li class="list-group-item"><a href="{{ foo.website }}" target=_blank>{{ foo.linkName }}</a></li>
+        {% endfor %}
+        </li>
+    </div><!-- list -->
+    {% endif %}
+
+    <div class="panel panel-default">
+        <div class="panel-heading" style="text-align:center;">
+            <h4 class="panel-title">关注"南开统计"公众号</h4>
+        </div>
+        <div class="panel-body" style="text-align:center;">
+            <img src="{% static 'images/nkstat_qrcode.jpeg' %}" alt="nkstat-qrcode">
+        </div>
+    </div><!-- panel -->
+</div><!--/.sidebar-offcanvas-->

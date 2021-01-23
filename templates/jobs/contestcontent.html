@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}
+{{ contest.contestName}}
+{% endblock %}
+{% block body %}
+    <div class="page-header">
+        <h1>{{ contest.contestName}}</h1>
+    </div>
+    <div class="row">
+    <h4>竞赛名称:</h4>
+    <p class="paragraph">{{ contest.contestName }}</p>
+    <h4>竞赛简介:</h4>
+    <p class="paragraph">{{ contest.contestInfo | linebreaksbr}}</p>
+    <h4>发布时间:</h4>
+    <p class="paragraph">{{ contest.pubTime }}</p>
+    {% ifnotequal contest.website '' %}
+    <h4>网址:</h4>
+    <p class="paragraph"><a href="{{ contest.website}}">{{ contest.website }}</a></p>
+    {% endifnotequal %}
+    </div><!--/row-->
+{% endblock %}
